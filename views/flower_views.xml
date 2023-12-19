@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="flower_shop_tree" model="ir.ui.view">
+            <field name="name">flower.shop.tree</field>
+            <field name="model">flower.shop</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="common_name"/>
+                    <field name="scientific_name"/>
+                    <field name="season_start"/>
+                    <field name="season_end"/>
+                    <field name="watering_frequency"/>
+                    <field name="watering_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_flower_form" model="ir.ui.view">
+            <field name="name">flower.shop.form</field>
+            <field name="model">flower.shop</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="common_name"/>
+                        <field name="scientific_name"/>
+                    </group>
+                    <group>
+                        <field name="season_start"/>
+                        <field name="season_end"/>
+                        <field name="watering_frequency"/>
+                        <field name="watering_amount"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="flower_shop_action_window">
+            <field name="name">Flower Shop</field>
+            <field name="res_model">flower.shop</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_flower_products" model="ir.actions.act_window">
+            <field name="name">Flower Products</field>
+            <field name="res_model">product.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_flower', '=', True)]</field>
+            <field name="context">{'default_is_flower': True}</field>
+        </record>     
+
+        <menuitem id="flower_shop_menu_root" name="Sally's Flower Shop" action="flower_shop_action_window"/>
+        <menuitem id="flower_menu" name="Flowers" parent="flower_shop_menu_root" action="flower_shop_action_window"/>
+        <menuitem id="product_flower_menu" name="Flower Products" parent="sale.sale_menu_root" sequence="5" action="action_flower_products" groups="sales_team.group_sale_salesman"/>
+
+    </data>
+</odoo>

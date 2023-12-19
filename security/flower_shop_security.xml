@@ -1,0 +1,17 @@
+<odoo>
+    <record id="group_gardener" model="res.groups">
+        <field name="name">Gardener</field>
+        <field name="category_id" ref="base.module_category_human_resources"/>
+    </record>
+
+    <record id="flower_product_see_own" model="ir.rule">
+        <field name="name">Flower Product: see own</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="groups" eval="[(4, ref('group_gardener'))]"/>
+        <field name="domain_force">['|', ('gardeners', '=', user.id), ('gardeners', '=', False)]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

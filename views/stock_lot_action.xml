@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+    
+        <record id="action_water_flower" model="ir.actions.server">
+            <field name="name">Water Flower</field>
+            <field name="model_id" ref="stock.model_stock_lot"/>
+            <field name="binding_model_id" ref="stock.model_stock_lot"/>
+            <field name="state">code</field>
+            <field name="code">
+                for record in records:
+                    record.water_flower()
+            </field>
+        </record>
+    
+    </data>
+</odoo>
